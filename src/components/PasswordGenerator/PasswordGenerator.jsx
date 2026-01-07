@@ -106,9 +106,9 @@ function PasswordGenerator() {
     <>
       <Main>
         <Title>Gerador de Senha</Title>
-        <PasswordContainer>
+        <PasswordContainer isActive={password.length > 0}>
           <p>{password}</p>
-          <Copy />
+          <Copy isActive={password.length > 0} onClick={() => navigator.clipboard.writeText(password)}/>
         </PasswordContainer>
         <Form onSubmit={(e) => passwordGenerator(e)}>
           <RangeDiv>

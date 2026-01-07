@@ -20,9 +20,11 @@ export const PasswordContainer = styled.div`
   background-color: #080c14a6;
   width: 100%;
 
-  padding: 18px 15px;
+  max-height: ${({ isActive }) => (isActive ? '200px' : '0')};
+  padding: ${({ isActive }) => (isActive ? '18px 15px' : '0')};
+  margin-bottom: ${({ isActive }) => (isActive ? '15px' : '0')};
+
   border-radius: 6px;
-  margin-bottom: 15px;
   color: #ffffffef;
 
   font-size: 14px;
@@ -30,10 +32,15 @@ export const PasswordContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  opacity: ${({ isActive }) => (isActive ? 1 : 0)};
+  transform: ${({ isActive }) =>
+    isActive ? 'translateY(0)' : 'translateY(8px)'};;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 `;
 
 export const Copy = styled(FaCopy)`
-  cursor: pointer;
+  cursor: ${({ isActive }) => (isActive ? 'pointer' : 'default')};
   width: 18px;
   height: 18px;
 `
@@ -93,3 +100,4 @@ export const Button = styled.div`
       background-color: #216b28ff;
     }
 `;
+
