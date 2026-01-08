@@ -1,5 +1,10 @@
-import styled from 'styled-components';
-import { FaCopy } from 'react-icons/fa'
+import styled, { keyframes } from 'styled-components';
+import { FaCopy } from 'react-icons/fa';
+
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
 
 export const Main = styled.div`
   display: flex;
@@ -43,7 +48,7 @@ export const Copy = styled(FaCopy)`
   cursor: ${({ isActive }) => (isActive ? 'pointer' : 'default')};
   width: 18px;
   height: 18px;
-`
+`;
 
 export const Form = styled.form`
     background-color: #080c14a6;
@@ -101,3 +106,16 @@ export const Button = styled.div`
     }
 `;
 
+export const Modal = styled.div`
+  display: flex;
+  position: absolute;
+  align-items: center;
+  top: 20px;
+  right: 20px;
+  background-color: #17913bff;
+  padding: 25px;
+  gap: 12px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 7px 2px rgba(0, 0, 0, 0.3);
+  animation: ${fadeIn} 0.4s ease;
+`;

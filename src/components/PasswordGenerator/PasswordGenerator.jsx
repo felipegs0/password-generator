@@ -8,13 +8,16 @@ import {
   Option,
   Button,
   Copy,
+  Modal,
 } from './styled';
+import { FaCheckCircle } from 'react-icons/fa';
 
 function PasswordGenerator() {
   const [quant, setQuant] = useState(16);
   const [upper, setUpper] = useState(false);
   const [number, setNumber] = useState(false);
   const [symbol, setSymbol] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const [password, setPassword] = useState('');
 
@@ -32,6 +35,15 @@ function PasswordGenerator() {
 
   const handleSymbol = () => {
     setSymbol((prev) => !prev);
+  };
+
+  const handleModal = () => {
+    setVisible(true);
+    console.log("Esta funcionando")
+
+    setTimeout(() => {
+      setVisible(false);
+    }, 3000);
   };
 
   function rand(max) {
@@ -108,7 +120,13 @@ function PasswordGenerator() {
         <Title>Gerador de Senha</Title>
         <PasswordContainer isActive={password.length > 0}>
           <p>{password}</p>
-          <Copy isActive={password.length > 0} onClick={() => navigator.clipboard.writeText(password)}/>
+          <Copy
+            isActive={password.length > 0}
+            onClick={() => {
+              navigator.clipboard.writeText(password);
+              handleModal();
+            }}
+          />
         </PasswordContainer>
         <Form onSubmit={(e) => passwordGenerator(e)}>
           <RangeDiv>
@@ -138,6 +156,12 @@ function PasswordGenerator() {
           </Button>
         </Form>
       </Main>
+      {visible && (
+        <Modal visible>
+          <FaCheckCircle />
+          <p>Copiado com sucesso</p>
+        </Modal>
+      )}
     </>
   );
 }
